@@ -25,8 +25,7 @@ class Entity
 
     private function toCamelCase($string)
     {
-        $str = str_replace('_', '', ucwords($string, '_'));
-        return lcfirst($str);
+        return str_replace('_', '', ucwords($string, '_'));
     }
 
 }

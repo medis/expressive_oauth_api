@@ -42,16 +42,22 @@ class Client extends Entity
     public $redirect = '/redirect';
 
     /**
-     * @ORM\Column(name="personal_access_client", type="integer")
-     * @var integer
+     * @ORM\Column(name="personal_access_client", type="boolean")
+     * @var boolean
      */
-    public $personal_access_client = 1;
+    public $personal_access_client = true;
 
     /**
-     * @ORM\Column(name="password_client", type="integer")
-     * @var integer
+     * @ORM\Column(name="password_client", type="boolean")
+     * @var boolean
      */
-    public $password_client = 1;
+    public $password_client = true;
+
+    /**
+     * @ORM\Column(name="revoked", type="boolean")
+     * @var boolean
+     */
+    private $revoked = false;
 
     /**
      * @ORM\Column(name="algorithm", type="integer", nullable=false)

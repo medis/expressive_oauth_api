@@ -19,19 +19,19 @@ class RefreshToken
     public $id;
 
     /**
-     * @ORM\Column(name="access_token_id", type="string", length=100)
+     * @ORM\Column(name="access_token_id", type="string", length=100, nullable=true)
      * @var string
      */
     private $access_token_id;
 
     /**
-     * @ORM\Column(name="revoked", type="boolean")
+     * @ORM\Column(name="revoked", type="boolean", nullable=true)
      * @var integer
      */
     private $revoked;
 
     /**
-     * @ORM\Column(name="expires_at", type="timestamp")
+     * @ORM\Column(name="expires_at", type="datetime", nullable=true)
      * @var string
      */
     private $expires_at;

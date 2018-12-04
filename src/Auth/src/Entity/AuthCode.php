@@ -19,31 +19,31 @@ class AuthCode
     public $id;
 
     /**
-     * @ORM\Column(name="user_id", type="integer")
+     * @ORM\Column(name="user_id", type="integer", nullable=true)
      * @var integer
      */
     private $user_id;
 
     /**
-     * @ORM\Column(name="client_id", type="integer")
+     * @ORM\Column(name="client_id", type="integer", nullable=true)
      * @var integer
      */
     private $client_id;
 
     /**
-     * @ORM\Column(name="scopes", type="text")
+     * @ORM\Column(name="scopes", type="text", nullable=true)
      * @var string
      */
     private $scopes;
 
     /**
-     * @ORM\Column(name="revoked", type="boolean")
+     * @ORM\Column(name="revoked", type="boolean", nullable=true)
      * @var integer
      */
     private $revoked;
 
     /**
-     * @ORM\Column(name="expires_at", type="timestamp")
+     * @ORM\Column(name="expires_at", type="datetime", nullable=true)
      * @var string
      */
     private $expires_at;

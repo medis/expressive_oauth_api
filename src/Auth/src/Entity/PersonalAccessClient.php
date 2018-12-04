@@ -12,21 +12,21 @@ class PersonalAccessClient
 {
     /**
      * @ORM\Id
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="client_id", type="integer")
      * @ORM\GeneratedValue(strategy="NONE")
      * @var string
      */
     public $client_id;
 
     /**
-     * @ORM\Column(name="created_at", type="timestamp")
-     * @var string
+     * @ORM\Column(name="created_at", type="integer")
+     * @var integer
      */
     private $created_at;
 
     /**
-     * @ORM\Column(name="updated_at", type="timestamp")
-     * @var string
+     * @ORM\Column(name="updated_at", type="integer")
+     * @var integer
      */
     private $updated_at;
 }

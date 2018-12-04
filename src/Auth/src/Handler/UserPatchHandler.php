@@ -50,9 +50,9 @@ class UserPatchHandler implements RequestHandlerInterface
                 }
             });
         } catch (\Exception $e) {
-            print_r($e->getMessage());die;
+            return new JsonResponse(['error' => $e->getMessage()], 422);
         }
 
-        return new JsonResponse(['info' => sprintf('updated user %s', $user->getName())]);
+        return new JsonResponse(['info' => sprintf('updated user %s', $user->getUsername())]);
     }
 }
