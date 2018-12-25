@@ -45,7 +45,7 @@ class ConfigProvider
             ],
             'factories' => [
                 EntityManagerInterface::class => EntityManagerFactory::class,
-                User\FindUserByUuidInterface::class => User\DoctrineFindUserByUuidFactory::class,
+                User\FindUserByUuidInterface::class => User\DoctrineFindUserByUuidFactory::class
             ],
         ];
     }

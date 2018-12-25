@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Psr\Container\ContainerInterface;
 use Zend\Expressive\Application;
 use Zend\Expressive\MiddlewareFactory;
+use Zend\Expressive\Router\Middleware\ImplicitOptionsMiddleware;
 
 /**
  * Setup routes with a single request method:
@@ -42,6 +43,10 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
         Zend\Expressive\Authentication\AuthenticationMiddleware::class,
         App\Handler\PingHandler::class
     ], 'api.ping');
+
+    $app->post('/api/user/login', [
+        Auth\Handler\UserLoginHandler::class
+    ], 'user.login');
 
     $app->post('/api/user/create', [
         Auth\Handler\UserCreateHandler::class

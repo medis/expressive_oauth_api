@@ -15,6 +15,7 @@ return [
             Auth\Handler\UserCreateHandler::class => Auth\Handler\UserCreateHandlerFactory::class,
             Auth\Handler\UserPatchHandler::class => Auth\Handler\UserPatchHandlerFactory::class,
             Auth\Handler\UserShowHandler::class => Auth\Handler\UserShowHandlerFactory::class,
+            Auth\UserLoginHandler::class => Auth\UserLoginHandlerFactory::class,
         ],
     ],
 ];
