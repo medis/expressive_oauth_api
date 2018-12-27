@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Factory\CorsMiddlewareFactory;
 use Psr\Container\ContainerInterface;
+use Tuupola\Middleware\CorsMiddleware;
 use Zend\Expressive\Application;
 use Zend\Expressive\Handler\NotFoundHandler;
 use Zend\Expressive\Helper\ServerUrlMiddleware;
@@ -42,6 +44,8 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     // - $app->pipe('/docs', $apiDocMiddleware);
     // - $app->pipe('/files', $filesMiddleware);
 
+    $app->pipe(\Zend\Expressive\Session\SessionMiddleware::class);
+
     // Register the routing middleware in the middleware pipeline.
     // This middleware registers the Zend\Expressive\Router\RouteResult request attribute.
     $app->pipe(RouteMiddleware::class);
@@ -53,7 +57,8 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     // Order here matters; the MethodNotAllowedMiddleware should be placed
     // after the Implicit*Middleware.
     $app->pipe(ImplicitHeadMiddleware::class);
-    $app->pipe(ImplicitOptionsMiddleware::class);
+//    $app->pipe(ImplicitOptionsMiddleware::class);
+    $app->pipe(CorsMiddleware::class);
     $app->pipe(MethodNotAllowedMiddleware::class);
 
     // Seed the UrlHelper with the routing results:

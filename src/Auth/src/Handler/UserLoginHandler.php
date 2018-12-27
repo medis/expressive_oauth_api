@@ -17,6 +17,6 @@ class UserLoginHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request) : ResponseInterface
     {
-        return new JsonResponse('hi');
+        return new JsonResponse(['info' => 'hi']);
     }
 }
