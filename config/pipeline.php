@@ -16,6 +16,7 @@ use Zend\Expressive\Router\Middleware\ImplicitOptionsMiddleware;
 use Zend\Expressive\Router\Middleware\MethodNotAllowedMiddleware;
 use Zend\Expressive\Router\Middleware\RouteMiddleware;
 use Zend\Stratigility\Middleware\ErrorHandler;
+use function Zend\Stratigility\path;
 
 /**
  * Setup middleware pipeline:
@@ -44,7 +45,10 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     // - $app->pipe('/docs', $apiDocMiddleware);
     // - $app->pipe('/files', $filesMiddleware);
 
-    $app->pipe(\Zend\Expressive\Session\SessionMiddleware::class);
+    $app->pipe(path('/dashboard', $factory->pipeline(
+        Zend\Expressive\Session\SessionMiddleware::class,
+        Zend\Expressive\Authentication\AuthenticationMiddleware::class
+    )));
 
     // Register the routing middleware in the middleware pipeline.
     // This middleware registers the Zend\Expressive\Router\RouteResult request attribute.

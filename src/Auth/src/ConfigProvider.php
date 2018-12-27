@@ -11,6 +11,10 @@ use Doctrine\DBAL\Driver\Mysqli\Driver;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Auth\Service\User;
+use Zend\Expressive\Authentication\AuthenticationInterface;
+use Zend\Expressive\Authentication\Session\PhpSession;
+use Zend\Expressive\Authentication\UserRepository\PdoDatabase;
+use Zend\Expressive\Authentication\UserRepositoryInterface;
 
 /**
  * The configuration provider for the Auth module
@@ -41,11 +45,15 @@ class ConfigProvider
     {
         return [
             'aliases' => [
-                Authentication\AuthenticationInterface::class => Authentication\OAuth2\OAuth2Adapter::class
+//                Authentication\AuthenticationInterface::class => Authentication\OAuth2\OAuth2Adapter::class,
+                AuthenticationInterface::class => PhpSession::class,
+                UserRepositoryInterface::class => PdoDatabase::class
             ],
             'factories' => [
                 EntityManagerInterface::class => EntityManagerFactory::class,
-                User\FindUserByUuidInterface::class => User\DoctrineFindUserByUuidFactory::class
+                User\FindUserByUuidInterface::class => User\DoctrineFindUserByUuidFactory::class,
+                Handler\UserLoginHandler::class => Handler\UserLoginHandlerFactory::class,
+                Handler\UserLogoutHandler::class => Handler\UserLogoutHandlerFactory::class,
             ],
         ];
     }
@@ -53,17 +61,23 @@ class ConfigProvider
     public function getAuthenticationConfig()
     {
         return [
-            'private_key'    => getcwd() . '/data/oauth/private.key',
-            'public_key'     => getcwd() . '/data/oauth/public.key',
-            'encryption_key' => require getcwd() . '/data/oauth/encryption.key',
-            'access_token_expire'  => 'P1D',
-            'refresh_token_expire' => 'P1M',
-            'auth_code_expire'     => 'PT10M',
+//            'private_key'    => getcwd() . '/data/oauth/private.key',
+//            'public_key'     => getcwd() . '/data/oauth/public.key',
+//            'encryption_key' => require getcwd() . '/data/oauth/encryption.key',
+//            'access_token_expire'  => 'P1D',
+//            'refresh_token_expire' => 'P1M',
+//            'auth_code_expire'     => 'PT10M',
             'pdo' => [
                 'dsn'      => 'mysql:dbname=oauth;host=mysql;charset=utf8',
                 'username' => 'root',
-                'password' => 'password'
+                'password' => 'password',
+                'table' => 'oauth_users',
+                'field' => [
+                    'identity' => 'username',
+                    'password' => 'password',
+                ],
             ],
+            'redirect' => '/login',
         ];
     }
 

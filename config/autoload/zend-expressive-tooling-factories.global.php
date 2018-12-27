@@ -16,6 +16,7 @@ return [
             Auth\Handler\UserPatchHandler::class => Auth\Handler\UserPatchHandlerFactory::class,
             Auth\Handler\UserShowHandler::class => Auth\Handler\UserShowHandlerFactory::class,
             Auth\UserLoginHandler::class => Auth\UserLoginHandlerFactory::class,
+            Dashboard\Handler\LandingPageHandler::class => Dashboard\Handler\LandingPageHandlerFactory::class,
         ],
     ],
 ];

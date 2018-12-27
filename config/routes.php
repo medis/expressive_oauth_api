@@ -44,9 +44,25 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
         App\Handler\PingHandler::class
     ], 'api.ping');
 
-    $app->post('/api/user/login', [
-        Auth\Handler\UserLoginHandler::class
-    ], 'user.login');
+    $app->route(
+        '/login',
+        [
+            Zend\Expressive\Session\SessionMiddleware::class,
+            Auth\Handler\UserLoginHandler::class
+        ],
+        ['GET', 'POST'],
+        'login'
+    );
+
+    $app->get('/logout',
+        [
+            Zend\Expressive\Session\SessionMiddleware::class,
+            Auth\Handler\UserLogoutHandler::class
+        ],
+        'logout'
+    );
+
+    $app->get('/dashboard', [Dashboard\Handler\LandingPageHandler::class], 'dashboard.landing');
 
     $app->post('/api/user/create', [
         Auth\Handler\UserCreateHandler::class
