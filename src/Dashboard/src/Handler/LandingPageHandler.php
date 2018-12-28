@@ -36,7 +36,7 @@ class LandingPageHandler implements RequestHandlerInterface
         return new HtmlResponse($this->renderer->render(
             'dashboard::landing-page',
             [
-                'username' => $user['username']
+                'user' => $user
             ]
         ));
     }

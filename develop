@@ -63,6 +63,13 @@ if [ $# -gt 0 ]; then
       node \
       npm "$@"
 
+  elif [ "$1" == "exp" ]; then
+      shift 1
+      $COMPOSE run --rm $TTY \
+        -w /var/www/html \
+        app \
+        composer expressive "$@"
+
   # If "doctrine" is used, run doctrine
   elif [ "$1" == "doctrine" ]; then
     shift 1

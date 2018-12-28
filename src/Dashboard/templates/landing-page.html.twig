@@ -2,6 +2,6 @@
 
 {% block content %}
 
-    <h1>Hello {{ username }}</h1>
+    <h1>Hello {{ user.details.first_name }} {{ user.details.last_name }}</h1>
 
 {% endblock %}

@@ -61,12 +61,12 @@ class ConfigProvider
     public function getAuthenticationConfig()
     {
         return [
-//            'private_key'    => getcwd() . '/data/oauth/private.key',
-//            'public_key'     => getcwd() . '/data/oauth/public.key',
-//            'encryption_key' => require getcwd() . '/data/oauth/encryption.key',
-//            'access_token_expire'  => 'P1D',
-//            'refresh_token_expire' => 'P1M',
-//            'auth_code_expire'     => 'PT10M',
+            'private_key'    => getcwd() . '/data/oauth/private.key',
+            'public_key'     => getcwd() . '/data/oauth/public.key',
+            'encryption_key' => require getcwd() . '/data/oauth/encryption.key',
+            'access_token_expire'  => 'P1D',
+            'refresh_token_expire' => 'P1M',
+            'auth_code_expire'     => 'PT10M',
             'pdo' => [
                 'dsn'      => 'mysql:dbname=oauth;host=mysql;charset=utf8',
                 'username' => 'root',
@@ -76,6 +76,7 @@ class ConfigProvider
                     'identity' => 'username',
                     'password' => 'password',
                 ],
+                'sql_get_details' => 'SELECT first_name, last_name FROM oauth_users WHERE username = :identity'
             ],
             'redirect' => '/login',
         ];

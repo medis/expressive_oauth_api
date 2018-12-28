@@ -11,8 +11,8 @@
 
 <nav>
     <ul>
-        <li>{{ username }}</li>
-        <li>Tokens</li>
+        <li><a href="{{ path('dashboard.landing') }}">{{ user.details.first_name }} {{ user.details.last_name }}</a></li>
+        <li><a href="{{ path('dashboard.tokens') }}">Tokens</a></li>
         <li><a href="{{ path('logout') }}">Logout</a></li>
     </ul>
 </nav>

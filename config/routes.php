@@ -63,6 +63,7 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     );
 
     $app->get('/dashboard', [Dashboard\Handler\LandingPageHandler::class], 'dashboard.landing');
+    $app->get('/dashboard/tokens', [Dashboard\Handler\TokensPageHandler::class], 'dashboard.tokens');
 
     $app->post('/api/user/create', [
         Auth\Handler\UserCreateHandler::class
