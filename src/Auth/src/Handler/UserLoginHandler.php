@@ -52,7 +52,7 @@ class UserLoginHandler implements RequestHandlerInterface
         ));
     }
 
-    private function getRedirect(ServerRequestInterface $request, SessionInterface $session) : string
+    protected function getRedirect(ServerRequestInterface $request, SessionInterface $session) : string
     {
         $redirect = $session->get(self::REDIRECT_ATTRIBUTE);
 
