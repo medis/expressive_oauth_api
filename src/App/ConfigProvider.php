@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App;
 
+use ContainerInteropDoctrine\EntityManagerFactory;
+use Doctrine\ORM\EntityManager;
+
 /**
  * The configuration provider for the App module
  *
@@ -23,6 +26,7 @@ class ConfigProvider
         return [
             'dependencies' => $this->getDependencies(),
             'templates'    => $this->getTemplates(),
+            'doctrine' => $this->getDatabaseConfig()
         ];
     }
 
@@ -37,7 +41,8 @@ class ConfigProvider
             ],
             'factories'  => [
                 Handler\HomePageHandler::class => Handler\HomePageHandlerFactory::class,
-                \Tuupola\Middleware\CorsMiddleware::class => \App\Factory\CorsMiddlewareFactory::class
+                \Tuupola\Middleware\CorsMiddleware::class => \App\Factory\CorsMiddlewareFactory::class,
+                EntityManager::class => EntityManagerFactory::class
             ],
         ];
     }
@@ -55,4 +60,22 @@ class ConfigProvider
             ],
         ];
     }
+
+    public function getDatabaseConfig()
+    {
+        return [
+            'connection' => [
+                'orm_default' => [
+                    'params' => [
+                        'driver' => 'pdo_mysql',
+                        'host' => 'mysql:3306',
+                        'dbname' => 'oauth',
+                        'user' => 'root',
+                        'password' => 'password',
+                    ]
+                ]
+            ],
+        ];
+    }
+
 }

@@ -45,8 +45,8 @@ class ConfigProvider
     {
         return [
             'aliases' => [
-//                Authentication\AuthenticationInterface::class => Authentication\OAuth2\OAuth2Adapter::class,
-                AuthenticationInterface::class => PhpSession::class,
+                Authentication\AuthenticationInterface::class => Authentication\OAuth2\OAuth2Adapter::class,
+                // AuthenticationInterface::class => PhpSession::class,
                 UserRepositoryInterface::class => PdoDatabase::class
             ],
             'factories' => [

@@ -13,7 +13,7 @@ RUN apt-get update \
         sqlite3 \
         nginx \
         git \
-    && docker-php-ext-install mbstring pdo pdo_mysql opcache \
+    && docker-php-ext-install mbstring pdo pdo_mysql mysqli opcache \
     && pecl install apcu xdebug-2.6.0 \
     && docker-php-ext-enable apcu xdebug
 
